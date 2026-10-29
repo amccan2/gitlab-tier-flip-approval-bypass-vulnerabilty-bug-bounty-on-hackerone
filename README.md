@@ -2,7 +2,7 @@
 Proof of Concept and automated verification suite for a Broken Access Control vulnerability in GitLab EE (v19.5.1), demonstrating deployment approval bypass via the environment tier API. Submitted to GitLab on HackerOne.
 
 
-### 📸 AI-Assisted Research & Terminal Verification
+### Ethical Hacking / Security Research for Gitlab Bug Bounty on HackerOne to find vulnerabilities within the company along with Terminal Verification
 
 Claude Code Research & Script Generation Output
 
