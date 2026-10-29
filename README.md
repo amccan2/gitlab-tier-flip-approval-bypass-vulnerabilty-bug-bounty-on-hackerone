@@ -13,42 +13,49 @@ All testing was conducted strictly on a self-managed GitLab instance running on 
 
 ---
 
-### 1. Claude Code Research & Script Generation Output
+## 1. HackerOne Report #4152812 Submission & Triage Dashboard
+A screenshot of the HackerOne bug bounty portal displaying submitted report #4152812 ("Broken Access Control: bypass deployment approvals on tier-protected environments via environment tier API") for the GitLab managed program. It captures the submitted report details, triage status, and timeline.
+
+<img width="1248" height="736" alt="image" src="https://github.com/user-attachments/assets/d9e469d0-af40-4e5d-b1b6-d013c6df8b52" />
+
+---
+
+### 2. Claude Code Research & Script Generation Output
 A terminal capture showing the AI-assisted research phase in Claude Code, where the automated PoC script (poc_tier_flip_approval_bypass.sh) and initial report draft (REPORT-DRAFT.md) were generated, structured, and verified against the local GitLab instance.
 
 <img width="2497" height="1450" alt="image" src="https://github.com/user-attachments/assets/d56e179d-4bc3-44f9-900e-532499a7498c" />
 
 ---
 
-### 2. Vulnerability Execution Chain & Root Cause Breakdown
+### 3. Vulnerability Execution Chain & Root Cause Breakdown
 A detailed breakdown of the live verification results and technical root cause analysis (pointing to ee/app/policies/ee/environment_policy.rb), illustrating how a standard environment tier update API call defeats group-level deployment approval gates.
 
 <img width="2048" height="1202" alt="image" src="https://github.com/user-attachments/assets/7bd532c0-6388-4ec8-9fa0-57cf2ec1c1cc" />
 
 ---
 
-### 3. Live Video Walkthrough: Control Run & Tier-Flip Approval Bypass
+### 4. Live Video Walkthrough: Control Run & Tier-Flip Approval Bypass
 A video recording of the complete attack chain. It demonstrates the initial 400 Bad Request control check when attempting to deploy without approval, followed by the PUT request mutating the environment tier to development, and the subsequent 200 OK execution bypassing deployment gates
 
 https://www.youtube.com/watch?v=TCsrVp7dILc
 
 ---
 
-### 4. PowerShell Verification Output — Step-by-Step Attack Chain
+### 5. PowerShell Verification Output — Step-by-Step Attack Chain
 Terminal output from verify-all.ps1 showing real-time REST API requests and responses across all 8 steps of the PoC (group protection setup, pipeline blocking, environment tier mutation, and job playback execution).
 
 <img width="1280" height="764" alt="image" src="https://github.com/user-attachments/assets/ae020d02-cdfb-4347-a05a-5ed1080e1337" />
 
 ---
 
-### 5. PowerShell Verification Output — Final Results & PASS Assertions
+### 6. PowerShell Verification Output — Final Results & PASS Assertions
 Terminal summary screen showing all automated checks passing ([PASS] 1 through [PASS] 8), confirming instance version 19.5.1-ee and logging the complete transcript to verify-run.txt.
 
 <img width="1280" height="299" alt="image" src="https://github.com/user-attachments/assets/0bcc079f-701d-4a90-aa13-c732e674472f" />
 
 ---
 
-### 6. verify-all.ps1 (Automated End-to-End Proof of Concept & Verification Suite)
+### 7. verify-all.ps1 (Automated End-to-End Proof of Concept & Verification Suite)
 An automated PowerShell script that programmatically executes and validates all 8 steps of the GitLab EE tier-flip deployment approval bypass vulnerability. 
 
 The script establishes a test environment, configures group-level protected environment tiers with approval rules, pushes a CI/CD pipeline as an unauthorized developer, asserts that the control gate successfully blocks execution (returning a 403/400 error), performs the REST API tier-mutation attack (PUT /environments/{id}?tier=development), and asserts that the blocked job successfully replays and achieves full deployment success with zero approvals recorded. All API transactions and test assertions are automatically logged to a verification transcript.
@@ -63,7 +70,7 @@ The script establishes a test environment, configures group-level protected envi
 
 ---
 
-### 7. HackerOne Security Report — Full Technical Submission
+### 8. HackerOne Security Report — Full Technical Submission
 The full bug bounty report submitted to the GitLab Security Team on HackerOne. It documents the vulnerability summary, preconditions, step-by-step reproduction commands, technical root cause in ee/app/policies/ee/environment_policy.rb, control vs. bypass API comparison, expected vs. actual behavior, and prior-art duplicate checking.
 
 > NOTE! Thanks for submitting a report! Please note that initial triage is handled by HackerOne staff. They are identified with a `HackerOne triage` badge and will escalate to the GitLab team any valid security issue or any questions that they need answered to properly handle your report.
