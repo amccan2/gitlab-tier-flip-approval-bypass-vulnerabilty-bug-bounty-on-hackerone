@@ -7,7 +7,7 @@ Proof of Concept and automated verification suite for a Broken Access Control vu
 # Overview
 This repository contains the proof of concept (PoC), root cause analysis, and automated verification suite for a **Broken Access Control (CWE-284)** vulnerability discovered in **GitLab Enterprise Edition (EE v19.5.1)**.
 
-The research demonstrates how a user who has **deploy access** to a tier-protected environment (e.g., `production`)—but lacks **deployment approval rights**—can bypass the required approval gates entirely using a single REST API call. By changing the environment's `tier` attribute (`PUT /api/v4/projects/:id/environments/:environment_id?tier=development`), the environment drops out of group-level protection. This clears the pending approval requirement and allows blocked production code to execute with **zero recorded approvals**.
+The research demonstrates how a user who has **deploy access** to a tier-protected environment (e.g., `production`) but lacks **deployment approval rights** can bypass the required approval gates entirely using a single REST API call. By changing the environment's `tier` attribute (`PUT /api/v4/projects/:id/environments/:environment_id?tier=development`), the environment drops out of group-level protection. This clears the pending approval requirement and allows blocked production code to execute with **zero recorded approvals**.
 
 All testing was conducted strictly on a self-managed GitLab instance running on a local home lab environment (Ultimate Trial license).  
 
