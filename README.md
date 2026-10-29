@@ -53,7 +53,15 @@ An automated PowerShell script that programmatically executes and validates all 
 
 The script establishes a test environment, configures group-level protected environment tiers with approval rules, pushes a CI/CD pipeline as an unauthorized developer, asserts that the control gate successfully blocks execution (returning a 403/400 error), performs the REST API tier-mutation attack (PUT /environments/{id}?tier=development), and asserts that the blocked job successfully replays and achieves full deployment success with zero approvals recorded. All API transactions and test assertions are automatically logged to a verification transcript.
 
+### Repository Files
 
+* **Automated Verification Script:** [`verify-all.ps1`](verify-all.ps1)
+* **Shell PoC Script:** [`poc_tier_flip_approval_bypass.sh`](poc_tier_flip_approval_bypass.sh)
+* **HackerOne Final Report:** [`REPORT-FINAL.md`](REPORT-FINAL.md)
+* **Verification Transcript:** [`verify-run.txt`](evidence/verify-run.txt)
+* **Proof of Concept Video:** [`Gitlabs POC Recording.mp4`](Gitlabs%20POC%20Recording.mp4)
+
+---
 
 ### 7. HackerOne Security Report — Full Technical Submission
 The full bug bounty report submitted to the GitLab Security Team on HackerOne. It documents the vulnerability summary, preconditions, step-by-step reproduction commands, technical root cause in ee/app/policies/ee/environment_policy.rb, control vs. bypass API comparison, expected vs. actual behavior, and prior-art duplicate checking.
